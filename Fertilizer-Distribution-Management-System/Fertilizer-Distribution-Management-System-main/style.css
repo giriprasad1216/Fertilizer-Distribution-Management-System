@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+form {
+    margin: 30px auto;
+    max-width: 400px;
+}
+
+label, input, textarea, select {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input, textarea, select{
+    margin-left: 120px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#order-summary {
+    display: none;
+    margin: 20px auto;
+    max-width: 400px;
+}

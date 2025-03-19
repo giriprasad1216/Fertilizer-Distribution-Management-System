@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Crop Recommendation </title>
+    <style>
+        body {
+            background-image: url(https://images.nationalgeographic.org/image/upload/t_edhub_resource_key_image/v1638892233/EducationHub/photos/crops-growing-in-thailand.jpg);
+            background-size: cover;
+            color: white;
+            font-size: 25px; /* Increased font size */
+            margin:0;
+            padding:0;
+        }
+        h1 {
+            text-align: center;
+            color:Black;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            width: 80%; /* Set a width for form groups */
+        }
+        label {
+            margin-right: 20px; /* Space between label and input */
+            color:black;
+        }
+        select, input, button {
+            font-size: inherit; /* Inherit font size for inputs */
+            padding: 10px; /* Add some padding for better appearance */
+            color:black
+        }
+        .navbar {
+            background-color: #28a745;
+            padding: 3px 10px; /* Further reduced padding */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 14px; /* Reduced font size */
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            width: 80px; /* Adjusted logo size */
+            height: 20px; /* Adjusted logo size */
+        }
+
+        .navbar-toggler {
+            border: none;
+            background-color: transparent;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .navbar-nav .nav-item {
+            list-style: none;
+            margin: 0 5px; /* Further reduced margin between items */
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 3px 7px; /* Further reduced padding */
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #d4d4d4;
+        }
+
+        .navbar-nav .active {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            padding: 3px 7px; /* Adjusted padding for active links */
+        }
+
+        .navbar-collapse {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        /* Responsive navbar for mobile */
+        @media (max-width: 768px) {
+            .navbar-toggler {
+                display: block;
+            }
+
+            .navbar-collapse {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                background-color: #28a745;
+                padding: 10px 0;
+                position: absolute;
+                top: 40px;
+                left: 0;
+                z-index: 999;
+            }
+
+            .navbar-collapse.show {
+                display: flex;
+            }
+
+            .navbar-nav {
+                flex-direction: column;
+            }
+
+            .navbar-nav .nav-item {
+                margin: 10px 0;
+            }
+        }
+        button {
+            background-color: #0cec40;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm">
+        <a href="#" class="navbar-brand">
+            <img src="img/agri_logo.png" alt="Agri Target Logo" style="width:100px; ">
+        </a>
+        <button class="navbar-toggler" onclick="toggleNavbar()">☰</button>
+        <div class="navbar-collapse" id="navbar_id">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="index.html" class="nav-link active">HOME</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">Products Details</a></li>
+                <li class="nav-item"><a href="recommendation.html" class="nav-link">Crop Recommendation</a></li>
+                <li class="nav-item"><a href="login.html" class="nav-link">LOGIN</a></li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <h1>Crop Recommendation</h1>
+    <form id="cropForm">
+        <div class="form-group">
+            <label for="soilType">Select Soil Type:</label>
+            <select id="soilType">
+                <option value="redSoil">Red Soil</option>
+                <option value="blackSoil">Black Soil</option>
+                <option value="sandySoil">Sandy Soil</option>
+                <option value="loamySoil">Loamy Soil</option>
+                <option value="salineSoil">Saline Soil</option>
+                <option value="desertSoil">Desert Soil</option>
+                <option value="alluvialSoil">Alluvial Soil</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="season">Select Season:</label>
+            <select id="season">
+                <option value="kharif">Kharif</option>
+                <option value="rabi">Rabi</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="state">Select State:</label>
+            <select id="state" onchange="updateDistricts()">
+                <option value="">Select State</option>
+                <option value="telangana">Telangana</option>
+                <option value="andhra_pradesh">Andhra Pradesh</option>
+                <option value="tamil_nadu">Tamil Nadu</option>
+                <option value="kerala">Kerala</option>
+                <option value="karnataka">Karnataka</option>
+                <option value="maharashtra">Maharashtra</option>
+                <option value="madhya_pradesh">Madhya Pradesh</option>
+                <option value="uttar_pradesh">Uttar Pradesh</option>
+                <option value="rajasthan">Rajasthan</option>
+                <option value="gujarat">Gujarat</option>
+                <option value="punjab">Punjab</option>
+                <option value="delhi">Delhi</option>
+                <option value="jammu_kashmir">Jammu and Kashmir</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="district">Select District:</label>
+            <select id="district">
+                <option value="">Select District</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="recommendedCrop">Recommended Crop:</label>
+            <input type="text" id="recommendedCrop" readonly>
+        </div>
+
+        <button type="button" onclick="recommendCrop()">Recommend Crop</button>
+    </form>
+ <script>
+        const districts = {
+            telangana: ["Hyderabad", "Mahbubnagar", "Medak", "Nalgonda", "Nizamabad", "Adilabad", "Karimnagar", "Warangal", "Khammam"],
+            andhra_pradesh: ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Krishna", "Kurnool", "Prakasam", "Nellore", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
+            tamil_nadu: ["Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kancheepuram", "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Tiruchirappalli", "Tirunelveli", "Tirupathur", "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram", "Virudhunagar"],
+            kerala: ["Kollam", "Pathanamthitta", "Alappuzha", "Kottayam", "Idukki", "Ernakulam", "Thrissur", "Palakkad", "Malappuram", "Kozhikode", "Wayanad", "Kannur", "Kasaragod"],
+            karnataka: ["Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", "Bidar", "Chamarajanagar", "Chikballapur", "Chikkamagaluru", "Chitradurga", "Dakshina Kannada", "Davanagere", "Dharwad", "Gadag", "Hassan", "Haveri", "Kalaburagi", "Kodagu", "Kolar", "Koppal"],
+            maharashtra: ["Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Bhandara", "Buldhana", "Chandrapur", "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur", "Latur", "Nagpur", "Nanded", "Nandurbar", "Nashik", "Palghar"],
+            madhya_pradesh: ["Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Barwani", "Betul", "Bhind", "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda", "Hoshangabad", "Indore", "Jabalpur", "Jhabua", "Katni"],
+            uttar_pradesh: ["Agra", "Aligarh", "Ambedkar Nagar", "Amroha", "Auraiya", "Ayodhya", "Azamgarh", "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly", "Basti", "Bhadohi", "Bijnor", "Budaun", "Bulandshahr", "Chandauli", "Chitrakoot", "Deoria", "Etah", "Etawah"],
+            rajasthan: ["Ajmer", "Alwar", "Banswara", "Baran", "Barmer", "Bharatpur", "Bhilwara", "Bikaner", "Bundi", "Chittorgarh", "Churu", "Dausa", "Dholpur", "Dungarpur", "Hanumangarh", "Jaipur", "Jaisalmer", "Jalore", "Jhalawar", "Jhunjhunu"],
+            gujarat: ["Ahmedabad", "Amreli", "Anand", "Aravalli", "Banaskantha", "Bharuch", "Bhavnagar", "Botad", "Chhota Udaipur", "Dahod", "Dang", "Devbhoomi Dwarka", "Gandhinagar", "Gir Somnath", "Jamnagar", "Junagadh", "Kheda", "Kutch", "Mahisagar", "Mehsana"],
+            punjab: ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Mansa", "Moga", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "Sahibzada Ajit Singh Nagar", "Shahid Bhagat Singh Nagar", "Tarn Taran"],
+            delhi: ["Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi", "North West Delhi", "Shahdara", "South Delhi", "South East Delhi", "South West Delhi", "West Delhi"],
+            jammu_kashmir: ["Anantnag", "Bandipora", "Baramulla", "Budgam", "Doda", "Ganderbal", "Jammu", "Kathua", "Kishtwar", "Kulgam", "Kupwara", "Poonch", "Pulwama", "Rajouri", "Ramban", "Reasi", "Samba", "Shopian", "Srinagar", "Udhampur"]
+        };
+
+        function updateDistricts() {
+            const stateSelect = document.getElementById("state");
+            const districtSelect = document.getElementById("district");
+            const selectedState = stateSelect.value;
+
+             while (districtSelect.options.length > 1) {
+ districtSelect.remove(1);
+ }
+ if (districts[selectedState]) {
+ districts[selectedState].forEach(district => {
+ let option = document.createElement("option");
+ option.value = district;
+ option.text = district;
+ districtSelect.add(option);
+ });
+ }
+ }
+     function recommendCrop() {
+ var soilType = document.getElementById("soilType").value;
+ var season = document.getElementById("season").value;
+ var recommendedCrop = "";
+ if (soilType === "redSoil") {
+ if (season === "kharif") {
+ recommendedCrop = "Paddy";
+ } else if (season === "rabi") {
+ recommendedCrop = "Wheat";
+ }
+} else if (soilType === "blackSoil") {
+ if (season === "kharif") {
+ recommendedCrop = "Cotton";
+ 
+ } else if (season === "rabi") {
+ recommendedCrop = "Maize";
+ }
+ } else if (soilType === "sandySoil") {
+ if (season === "kharif") {
+ recommendedCrop = "Maize";
+ } else if (season === "rabi") {
+ recommendedCrop = "Potato";
+ }
+ } else if (soilType === "loamySoil") {
+ if (season === "kharif") {
+ recommendedCrop = "Tomato";
+ } else if (season === "rabi") {
+ recommendedCrop = "Wheat";
+ }
+ } else if (soilType === "salineSoil") {
+ if (season === "kharif") {
+ recommendedCrop = "Millets";
+ } else if (season === "rabi") {
+ recommendedCrop = "Barley";
+ }
+ } else if (soilType === "desertSoil") {
+ if (season === "kharif") {
+ recommendedCrop = "Cactus";
+ } else if (season === "rabi") {
+ recommendedCrop = "Date Palm";
+ }
+ } else if (soilType === "alluvialSoil") {
+ if (season === "kharif") {
+ recommendedCrop = "Sugarcane";
+} else if (season === "rabi") {
+ recommendedCrop = "Wheat";
+ }
+ 
+ }
+ document.getElementById("recommendedCrop").value = recommendedCrop;
+ }
+ </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Log In</title>
+	<link href="https://fonts.googleapis.com/css?family=Baloo+Da+2|Cabin|Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-dark bg-success fixed-top">
+		<a href="#" class="navbar-brand"><img src="C:\Users\cse\Desktop\logo.PNG" alt="" style="width: 200px;"></a>
+		<button class="navbar-toggler" data-toggle="collapse" data-target="#navbar_id"><span class="navbar-toggler-icon"></span></button>
+		<div class="collapse navbar-collapse justify-content-center" id="navbar_id">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a href="index.html" class="nav-link">HOME</a></li>
+				<li class="nav-item"><a href="login.html" class="nav-link active">LOGIN</a></li>
+				<!-- <li class="nav-item"><a href="about.html" class="nav-link">PHOTO GALLERY</a></li> -->
+                <!-- <li style="float: right;"  class="nav-item">Profile</li> -->
+		</ul>
+		</collapse>	
+	</nav><!-- class="navbar" -->
+
+	<div class="wrapper">
+	<div class="head clearfix">
+		<h1>Log In</h1>
+	</div><!-- head -->
+	
+	<div class="contain clearfix">
+		<div class="column">
+			<img class="sidepic" src="wave/ka.svg">
+		</div><!-- column -->
+
+		<dic class="column">
+			<img class="contactpic" src="wave/profilepic.svg">
+			<form action="Login.php" class="signup"  method="post">
+				<br>
+				<label class="text-xl text-center" for="lblMsg">Login</label>
+				<br>
+				<input type="text" name="txtUName" placeholder="Username" required>
+				<br>
+				<input type="password" name="txtPsw" placeholder="Password" required>
+				<br>
+				<a href="registration.html">Didn't have an account?</a>
+				<br>
+				<a href="index.html" name="btnLogin" value="HTML" class="btn btn-success btn-lg">Log In</a>
+			</form>
+		</dic><!-- column -->
+	</div><!-- contain -->
+
+		<div class="copyrights">
+			<div class="left">
+				Department of Agriculture | Copyrights &copy; All Rights Reserved | Tel : 011 587 4256
+			</div><!-- left -->
+		</div><!-- copyrights -->
+	</div><!-- wrapper -->
+</body>
+</html>
